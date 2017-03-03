@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import findStiffness as fs
 import os
 
-def plot(specs):
+def plot(specs,fileType):
     data = fs.findStiffness(10,1,True,'M:\HT_Compression_All\HT_Compression_3+post+frozen__BETTER_NAMING')
     perSpec = int((len(data)-1)/specs)
     for i in range(0,specs):
@@ -19,7 +19,7 @@ def plot(specs):
         plt.xlabel('Load (N)')
         plt.grid(True)
         #plt.show()
-        plt.savefig('M:\HT_Compression_All/'+str(title)+'.pdf', bbox_inches='tight')
+        plt.savefig('M:\HT_Compression_All/'+str(title)+'.'+str(fileType), bbox_inches='tight')
         print('\n')
 
-plot(4)
+plot(4,'pdf')
