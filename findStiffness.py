@@ -8,7 +8,7 @@ def findStiffness(segSize, incrSize, plot, fileDir):
     os.chdir(fileDir)
      # Scan through them separating them.
     listOfFolderNames = os.listdir(fileDir)
-    listOfFolderNames.sort()
+    listOfFolderNames.sort() #sort alphabetically  - important for plotting
     graphList = []
     graphList.append([])
     pltCount = 0
@@ -36,10 +36,6 @@ def findStiffness(segSize, incrSize, plot, fileDir):
         y = ydata.tolist()
         x = x[lower:]
         y = y[lower:]
-
-
-
-
         xmin = x[0]
         ymin = y[0]
         fail = False
@@ -52,7 +48,6 @@ def findStiffness(segSize, incrSize, plot, fileDir):
             c = c + 1
             if ((len(x)-1)-(incrSize*c)-segSize)<(incrSize):# the -1 is there due to array starting at 0 -> e.g. len(x) =56; but x-56= is out of bounds :)
                 aa =len(x)-(incrSize*c)-1-segSize
-#                print('aa = ' + str(aa) + ', len(x) = ' + str(len(x)))
                 break
 
         while (aa+segSize+incrSize) < len(x):
@@ -78,7 +73,6 @@ def findStiffness(segSize, incrSize, plot, fileDir):
     print(allRes)
     pc.copy(allRes)
     return(graphList)
-    #print('Results copies to clipboard')
+    print('Results copies to clipboard')
 
 
-#findStiffness(10,1)
