@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import findStiffness as fs
-
+import os.path
 
 def plot(specs, fileType):
     data = fs.findStiffness(10, 1, True, 'M:\HT_Compression_All\G41-11')
@@ -13,8 +13,8 @@ def plot(specs, fileType):
         for a in range(perSpec):
             ax.plot(data[(i * perSpec) + a][0], data[(i * perSpec) + a][1],
                     label=str(data[i * perSpec + a][2][10:-16]), linewidth=2)
-            print(data[i * perSpec + a][2])
-            print('i = ' + str(i) + ', a = ' + str(a))
+            # print(data[i * perSpec + a][2])
+            # print('i = ' + str(i) + ', a = ' + str(a))
         ax.legend(
             bbox_to_anchor=(1.05, 1.), loc=2, borderaxespad=0.,
             fontsize=9)
@@ -22,10 +22,12 @@ def plot(specs, fileType):
         plt.ylabel('Load (N)')
         plt.grid(True)
         # plt.show()
-        plt.savefig(
-            'M:\HT_Compression_All/' + str(title) + '.' + str(fileType),
-            bbox_inches='tight')
-        print('\n')
+        fname = 'M:\HT_Compression_All/' + str(title) + '.' + str(fileType)
+        if os.path.isfile(fname):
+            print("File exists already")
+        else:
+            plt.savefig(fname, bbox_inches='tight')
+        # print('\n')
 
 
 if __name__ == "__main__":
