@@ -2,8 +2,14 @@ import matplotlib.pyplot as plt
 import findStiffness as fs
 import os.path
 
+# ---------------
+numspecs = 1
+direc = 'M:\Compression_tests_12_that_were_used/PostVP'
+# ---------------
+
+
 def plot(specs, fileType):
-    data = fs.findStiffness(10, 1, True, 'M:\HT_Compression_All\G41-11')
+    data = fs.findStiffness(10, 1, True, direc)
     perSpec = int((len(data) - 1) / specs)
     for i in range(0, specs):
         fig = plt.figure()
@@ -22,14 +28,15 @@ def plot(specs, fileType):
         plt.ylabel('Load (N)')
         plt.grid(True)
         # plt.show()
-        fname = 'M:\HT_Compression_All/' + str(title) + '.' + str(fileType)
+        fname = direc + '/' + str(title) + '.' + str(fileType)
         if os.path.isfile(fname):
             print("File exists already")
         else:
             plt.savefig(fname, bbox_inches='tight')
         # print('\n')
+        plt.close()
 
 
 if __name__ == "__main__":
-    plot(5, 'pdf')
-    plot(5, 'png')
+    plot(numspecs, 'pdf')
+    plot(numspecs, 'png')
