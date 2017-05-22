@@ -13,7 +13,7 @@ def findStiffness(segSize, incrSize, plot, fileDir):
     listOfFolderNames = os.listdir(fileDir)
     listOfFolderNames.sort()  # Sort alphabetically - important for plotting
     newFolderList = []
-    print(listOfFolderNames)
+    # print(listOfFolderNames)
     for folder in listOfFolderNames:  # This is to solve the problem that it
         # doesn't run if other files are in the folder...
         if 'RawData' in folder:
@@ -31,7 +31,7 @@ def findStiffness(segSize, incrSize, plot, fileDir):
         fileLoc = folder + '/Specimen_RawData_1.csv'
         data = pandas.read_csv(fileLoc, header=1)
         countr = 0
-        print(folder)
+        # print(folder)
         load = list(data['(N)'])
         for i in load:  # removes the cycling preload from the data
             if(i <= 51):
