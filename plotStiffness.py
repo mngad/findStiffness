@@ -1,6 +1,10 @@
-import matplotlib.pyplot as plt
-import findStiffness as fs
+
 import os.path
+
+import findStiffness as fs
+
+import matplotlib.pyplot as plt
+
 
 # ---------------
 numspecs = 1
@@ -8,18 +12,18 @@ direc = 'M:\Compression_tests_12_that_were_used/PostVP'
 # ---------------
 
 
-def plot(specs, fileType):
+def plot(specs, file_type):
     data = fs.findStiffness(10, 1, True, direc)
-    perSpec = int((len(data) - 1) / specs)
+    per_spec = int((len(data) - 1) / specs)
     for i in range(0, specs):
         fig = plt.figure()
-        title = str(data[i * perSpec][2][:9]).replace('_', ' ')
+        title = str(data[i * per_spec][2][:9]).replace('_', ' ')
         fig.suptitle(title, fontsize=22)
         ax = fig.add_axes([0.1, 0.1, 0.6, 0.75])
-        for a in range(perSpec):
-            ax.plot(data[(i * perSpec) + a][0], data[(i * perSpec) + a][1],
-                    label=str(data[i * perSpec + a][2][10:-16]), linewidth=2)
-            # print(data[i * perSpec + a][2])
+        for a in range(per_spec):
+            ax.plot(data[(i * per_spec) + a][0], data[(i * per_spec) + a][1],
+                    label=str(data[i * per_spec + a][2][10:-16]), linewidth=2)
+            # print(data[i * per_spec + a][2])
             # print('i = ' + str(i) + ', a = ' + str(a))
         ax.legend(
             bbox_to_anchor=(1.05, 1.), loc=2, borderaxespad=0.,
@@ -28,7 +32,7 @@ def plot(specs, fileType):
         plt.ylabel('Load (N)')
         plt.grid(True)
         # plt.show()
-        fname = direc + '/' + str(title) + '.' + str(fileType)
+        fname = direc + '/' + str(title) + '.' + str(file_type)
         if os.path.isfile(fname):
             print("File exists already")
         else:
